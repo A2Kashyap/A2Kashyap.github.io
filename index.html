@@ -1,107 +1,127 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {font-family: Arial, Helvetica, sans-serif;}
-form {border: 3px solid #f1f1f1;}
 
-input[type=text], input[type=password] {
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+/* Style all input fields */
+
+input {
   width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
+  padding: 12px;
   border: 1px solid #ccc;
+  border-radius: 4px;
   box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
 }
 
-button {
+/* Style the submit button */
+input[type=button] {
   background-color: #04AA6D;
   color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
 }
 
-button:hover {
-  opacity: 0.8;
+/* Style the container for inputs */
+.container {
+  background-color: #f1f1f1;
+  padding: 20px;
 }
 
-.cancelbtn {
-  width: auto;
-  padding: 10px 18px;
-  background-color: #f44336;
+/* The message box is shown when the user clicks on the password field */
+#message {
+  display:none;
+  background: #f1f1f1;
+  color: #000;
+  position: relative;
+  padding: 20px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+#unauthorized {
+  display:none;
+  background: #f1f1f1;
+  color: #000;
+  position: relative;
+  padding: 20px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+#message p {
+  padding: 10px 35px;
+  font-size: 18px;
 }
 
 .imgcontainer {
   text-align: center;
-  margin: 24px 0 12px 0;
+  margin: 24px 0 24px 0;
 }
 
-img.avatar {
-  width: 40%;
-  border-radius: 50%;
-}
-
-.container {
-  padding: 16px;
-}
-
-span.psw {
-  float: right;
-  padding-top: 16px;
-}
-
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-  span.psw {
-     display: block;
-     float: none;
-  }
-  .cancelbtn {
-     width: 100%;
-  }
-}
 </style>
+
 </head>
 <body>
 
-<form action="/action_page.php" method="post">
-  <div class="imgcontainer">
+<div class="imgcontainer">
     <img src="simba.png" alt="Avatar" class="avatar">
-  </div>
+</div>
 
-  <div class="container">
-    <label for="uname"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required>
+<div class="container">
+  <form action="/action_page.php">
+    <label for="usrname">Username</label>
+    <input type="text" id="usrname" name="usrname" required>
 
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
-        
-    <button type="submit" onclick="javascript:validate()">Login</button>
+    <label for="psw">Password</label>
+    <input type="password" id="psw" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+    
+    <input type="button" id="submit" value="Submit">
+    <input type="reset" id="reset" value="Reset">
+    
+  </form>
+</div>
 
-  </div>
-</form>
+<div id="message">
+  <h3>Password must contain the following:</h3>
+  <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+  <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+  <p id="number" class="invalid">A <b>number</b></p>
+  <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+</div>
 
-</body>
+<div id="unauthorized">
+	<h3>Invalid Username/Password!<br>
+    Please Reset and try again</h3>
+</div>
+				
+<script>
+var password = document.getElementById("psw");
+var username = document.getElementById("usrname");
+var submit = document.getElementById("submit");
+var reset = document.getElementById("reset");
 
-<script type="text/javascript">
-function validate()
-{
-    if(   document.getElementByName("uname").value == "username"
-       && document.getElementByName("psw").value == "password" )
-    {
-        alert( "validation succeeded" );
-        location.href="message.html";
+submit.onclick = function() {
+
+	
+  	if(password.value == "password" && username.value == "username") { 
+    	document.getElementById("message").style.display = "block";
     }
-    else
-    {
-        alert( "validation failed" );
-        location.href="message.html";
+    
+    else {
+    	document.getElementById("unauthorized").style.display = "block";
     }
 }
+
+reset.onclick = function() {
+  document.getElementById("message").style.display = "none";
+  document.getElementById("unauthorized").style.display = "none";
+}
+
+
 </script>
 
+</body>
 </html>
