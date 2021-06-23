@@ -80,10 +80,28 @@ span.psw {
     <label for="psw"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="psw" required>
         
-    <button type="submit">Login</button>
+    <button type="submit" onclick="javascript:validate()">Login</button>
 
   </div>
 </form>
 
 </body>
+
+<script type="text/javascript">
+function validate()
+{
+    if(   document.getElementByName("uname").value == "username"
+       && document.getElementByName("psw").value == "password" )
+    {
+        alert( "validation succeeded" );
+        location.href="https://www.w3schools.com";
+    }
+    else
+    {
+        alert( "validation failed" );
+        location.href="https://google.com";
+    }
+}
+</script>
+
 </html>
