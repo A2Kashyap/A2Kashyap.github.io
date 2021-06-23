@@ -66,12 +66,15 @@ input[type=button] {
 </head>
 <body>
 
-<div class="imgcontainer">
-    <img src="simba.png" alt="Avatar" class="avatar">
-</div>
 
-<div class="container">
-  <form action="/action_page.php">
+
+
+<form action="/action_page.php">
+  <div class="imgcontainer">
+    <img src="simba.png" alt="Avatar" class="avatar">
+  </div>
+
+  <div class="container">
     <label for="usrname">Username</label>
     <input type="text" id="usrname" name="usrname" required>
 
@@ -81,8 +84,9 @@ input[type=button] {
     <input type="button" id="submit" value="Submit">
     <input type="reset" id="reset" value="Reset">
     
-  </form>
-</div>
+  
+  </div>
+</form>
 
 <div id="message">
   <h3>Password must contain the following:</h3>
