@@ -41,6 +41,16 @@ img.avatar {
 }
 
 /* The message box is shown when the user clicks on the password field */
+#message1 {
+  display:none;
+  background: #f1f1f1;
+  color: #000;
+  position: relative;
+  padding: 20px;
+  margin-top: 10px;
+  text-align: center;
+}	
+	
 #message {
   display:none;
   background: #f1f1f1;
@@ -90,6 +100,14 @@ img.avatar {
   </div>
 </form>
 
+<div id="message1">
+  <h3>Password must contain the following:</h3>
+  <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+  <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+  <p id="number" class="invalid">A <b>number</b></p>
+  <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+</div>	
+	
 <div id="message">
   <h3>Password must contain the following:</h3>
   <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
